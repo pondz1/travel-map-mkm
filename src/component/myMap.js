@@ -1,15 +1,18 @@
 import React from 'react';
-import location from "../data/location";
+import locations from "../data/location";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import {Card} from "primereact/card";
+
 mapboxgl.accessToken = 'pk.eyJ1IjoicG9uZGpzIiwiYSI6ImNrcm9rcWpxdzJyN2ozMHA2ZnJnZDZ4YjEifQ.d2QtBRizaShlq089-1VLaQ';
+
 
 class MyMap extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            lng: 103.250214,
-            lat: 16.245471,
-            zoom: 15
+            lng: 103.1469,
+            lat: 16.0185,
+            zoom: 8.70
         };
         this.mapContainer = React.createRef();
     }
@@ -30,21 +33,14 @@ class MyMap extends React.PureComponent {
                 zoom: map.getZoom().toFixed(2)
             });
         });
-        map.on('load', () => {
-            map.addSource('my-data', {
-                "type": "geojson",
-                "data": {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [location[0].lng, location[0].lat]
-                    },
-                    "properties": {
-                        "title": location[0].name,
-                        "marker-symbol": "monument"
-                    }
-                }
-            });
+        // var marker1 = new mapboxgl.Marker()
+        //     .setLngLat([locations[0].lng, locations[0].lat])
+        //     .addTo(map);
+
+        let markers = locations.map(value => {
+            return new mapboxgl.Marker({color: value.color})
+                .setLngLat([value.lng, value.lat])
+                .addTo(map);
         })
 
     }
@@ -52,17 +48,28 @@ class MyMap extends React.PureComponent {
     render() {
         const {lng, lat, zoom} = this.state;
         return (
-            <div>
+            <div style={{backgroundColor: 'whitesmoke'}}>
                 <div className="sidebar">
                     Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
                 </div>
                 <div ref={this.mapContainer} className="map-container"/>
-                <div style={{marginTop: 100}}>
-                    <div>
-                        { location.map((item,index) => {
-                            return(
-                                <div style={{height: 70}}>
-                                    <p>{item.name}</p>
+                <div style={{marginTop: 100, paddingBottom: 100}}>
+                    <div style={{width: '100%', paddingInline: '10%'}}>
+                        {locations.map((item, index) => {
+                            return (
+                                <div  style={{marginBottom: 32}}>
+                                    <Card >
+                                        <div className="p-grid p-jc-center p-ai-center">
+                                            <div className="p-col-6" style={{
+                                                height: 80,
+                                                width: 80,
+                                                backgroundColor: item.color,
+                                            }} />
+                                            <div className="p-col-6">
+                                                <label>{item.name}</label>
+                                            </div>
+                                        </div>
+                                    </Card>
                                 </div>
                             )
                         })}
