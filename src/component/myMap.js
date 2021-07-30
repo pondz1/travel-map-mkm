@@ -75,8 +75,10 @@ class MyMap extends React.PureComponent {
                         })}
                     </div>
                     <div>
-                        <a href="https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing">Google
-                            Map</a>
+                        <div onClick={() => {
+                            window.open('https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing')
+                        }}>Google
+                            Map</div>
                     </div>
                 </div>
             </div>
