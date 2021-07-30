@@ -46,15 +46,15 @@ class MyMap extends React.PureComponent {
     }
 
     render() {
-        const {lng, lat, zoom} = this.state;
+        // const {lng, lat, zoom} = this.state;
         return (
             <div style={{backgroundColor: 'whitesmoke'}}>
-                <div className="sidebar">
-                    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-                </div>
+                {/*<div className="sidebar">*/}
+                {/*    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}*/}
+                {/*</div>*/}
                 <div ref={this.mapContainer} className="map-container"/>
-                <div style={{marginTop: 100, paddingBottom: 100}}>
-                    <div style={{width: '100%', paddingInline: '10%'}}>
+                <div style={{marginTop: 80, paddingBottom: 80}}>
+                    <div className="p-pl-6 p-pr-6" style={{width: '100%'}}>
                         {locations.map((item, index) => {
                             return (
                                 <div style={{marginBottom: 32}}>
@@ -75,10 +75,9 @@ class MyMap extends React.PureComponent {
                         })}
                     </div>
                     <div>
-                        <div onClick={() => {
-                            window.open('https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing')
-                        }}>Google
-                            Map</div>
+                        <a href="https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing"
+                        >Google
+                            Map</a>
                     </div>
                 </div>
             </div>
