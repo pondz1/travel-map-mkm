@@ -57,14 +57,14 @@ class MyMap extends React.PureComponent {
                     <div style={{width: '100%', paddingInline: '10%'}}>
                         {locations.map((item, index) => {
                             return (
-                                <div  style={{marginBottom: 32}}>
-                                    <Card >
+                                <div style={{marginBottom: 32}}>
+                                    <Card>
                                         <div className="p-grid p-jc-center p-ai-center">
                                             <div className="p-col-6" style={{
                                                 height: 80,
                                                 width: 80,
                                                 backgroundColor: item.color,
-                                            }} />
+                                            }}/>
                                             <div className="p-col-6">
                                                 <label>{item.name}</label>
                                             </div>
@@ -73,6 +73,10 @@ class MyMap extends React.PureComponent {
                                 </div>
                             )
                         })}
+                    </div>
+                    <div>
+                        <a href="https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing">Google
+                            Map</a>
                     </div>
                 </div>
             </div>
