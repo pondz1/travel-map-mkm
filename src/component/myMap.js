@@ -42,6 +42,7 @@ class MyMap extends React.PureComponent {
                 .setLngLat([value.lng, value.lat])
                 .addTo(map);
         })
+        console.log(markers)
 
     }
 
@@ -53,31 +54,41 @@ class MyMap extends React.PureComponent {
                 {/*    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}*/}
                 {/*</div>*/}
                 <div ref={this.mapContainer} className="map-container"/>
-                <div style={{marginTop: 80, paddingBottom: 80}}>
-                    <div className="p-pl-6 p-pr-6" style={{width: '100%'}}>
+                <div className="p-pb-4 p-pt-4 p-text-center">
+                    <a rel="noreferrer" target="_blank" href="https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing"
+                    >Google
+                        Map</a>
+                </div>
+                <div style={{marginTop: 8, paddingBottom: 80}}>
+                    <div className="p-pl-md-6 p-pr-md-6 p-pl-3 p-pr-3" style={{width: '100%'}}>
                         {locations.map((item, index) => {
                             return (
-                                <div style={{marginBottom: 32}}>
-                                    <Card>
-                                        <div className="p-grid p-jc-center p-ai-center">
-                                            <div className="p-col-6" style={{
-                                                height: 80,
-                                                width: 80,
-                                                backgroundColor: item.color,
-                                            }}/>
-                                            <div className="p-col-6">
-                                                <label>{item.name}</label>
+                                <div style={{marginBottom: 16}} key={index}>
+                                    <Card >
+                                        <div className="p-grid p-jc-start">
+                                            <div className="p-col-fixed" style={{
+                                                // height: 80,
+                                                // width: 80,
+                                                // backgroundColor: item.color,
+                                                borderColor: item.color,
+                                                borderWidth: 6,
+                                                borderStyle: 'solid',
+                                                marginLeft: 16,
+                                                marginRight: 16,
+                                            }}>
+                                                <img width={220} height={220} src={item.img}  alt={item.name} style={{objectFit: 'contain'}} />
+                                            </div>
+                                            <div className="p-col" >
+                                                <div className="p-justify-start">
+                                                    <p><b>{item.name}</b></p>
+                                                    <p>{item.detail}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </Card>
                                 </div>
                             )
                         })}
-                    </div>
-                    <div>
-                        <a href="https://www.google.com/maps/d/edit?mid=1d2xngPxXMZ_uR_YarVgA-mHQa5gyEVi1&usp=sharing"
-                        >Google
-                            Map</a>
                     </div>
                 </div>
             </div>
